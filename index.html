@@ -6,138 +6,203 @@
 <title>Live Sports Streaming</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    color: #fff;
-    text-align: center;
+html,body{
+    overflow-x:hidden;
+}
 
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
-    url('https://www.rollingstone.com/wp-content/uploads/2025/08/ESPN-HSV-Still-1024x576-1.png?w=1024&h=576&crop=1');
+body{
+    font-family:Arial,sans-serif;
+    color:#fff;
+    text-align:center;
 
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background:
+    linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.92)),
+    url('https://hallenfootballclub.co.uk/uploads/2023/07/which-site-could-i-watch-free-live-soccer-streaming-on.webp');
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
 }
 
 /* 🔝 TOP BANNER */
-.top-banner {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 60px;
-    background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(5px);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.top-banner{
+    position:fixed;
+    top:0;
+    width:100%;
+    height:60px;
+    background:rgba(0,0,0,0.82);
+    backdrop-filter:blur(6px);
+    z-index:9999;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
 /* 🔻 BOTTOM BANNER */
-.bottom-banner {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-    background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(5px);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.bottom-banner{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    height:60px;
+    background:rgba(0,0,0,0.82);
+    backdrop-filter:blur(6px);
+    z-index:9999;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-top:1px solid rgba(255,255,255,0.08);
 }
 
-.container {
-    padding-top: 90px;
-    padding-bottom: 90px; /* biar gak ketutup bottom banner */
+.container{
+    padding:80px 12px;
+    width:100%;
 }
 
-.live-badge {
-    background: red;
-    padding: 8px 18px;
-    border-radius: 30px;
-    font-weight: bold;
-    display: inline-block;
-    margin-bottom: 15px;
-    animation: blink 1s infinite;
+/* 🔴 LIVE BADGE */
+.live-badge{
+    background:linear-gradient(45deg,#ff0000,#ff3c3c);
+    padding:10px 22px;
+    border-radius:40px;
+    font-weight:bold;
+    letter-spacing:1px;
+    display:inline-block;
+    margin-bottom:18px;
+    box-shadow:0 0 18px rgba(255,0,0,0.8);
+    animation:blink 1s infinite;
 }
 
-@keyframes blink {
-    0% {opacity: 1;}
-    50% {opacity: 0.5;}
-    100% {opacity: 1;}
+@keyframes blink{
+    0%,100%{opacity:1;}
+    50%{opacity:0.6;}
 }
 
-.player-box {
-    position: relative;
-    width: 90%;
-    max-width: 650px;
-    margin: 20px auto;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 0 25px rgba(255,0,0,0.6);
-    cursor: pointer;
+/* 🏆 TITLE */
+h1{
+    font-size:42px;
+    margin-bottom:10px;
 }
 
-.player-box img {
-    width: 100%;
+.sub-text{
+    color:#ddd;
+    font-size:17px;
+    margin-bottom:25px;
 }
 
-.player-overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.3);
-    top: 0;
+/* 🔥 PLAYER BOX FIX (INI INTI MASALAH HP) */
+.player-box{
+    position:relative;
+    width:92%;
+    max-width:720px;
+    margin:20px auto;
+    border-radius:22px;
+    overflow:hidden;
+    cursor:pointer;
+
+    aspect-ratio:16/9; /* 🔥 FIX UTAMA */
+
+    box-shadow:
+        0 0 30px rgba(255,0,0,0.55),
+        0 0 80px rgba(255,0,0,0.25);
+
+    transition:.4s ease;
 }
 
-.play-btn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 70px;
-    background: rgba(0,0,0,0.6);
-    padding: 20px 30px;
-    border-radius: 50%;
-    animation: glow 1s infinite;
+.player-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover; /* 🔥 penting buat GIF biar nggak “kepotong aneh” */
+    display:block;
 }
 
-@keyframes glow {
-    0% {box-shadow: 0 0 10px red;}
-    50% {box-shadow: 0 0 25px red;}
-    100% {box-shadow: 0 0 10px red;}
+/* DARK OVERLAY */
+.player-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0.15));
 }
 
-.cta-btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 16px 30px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #fff;
-    background: linear-gradient(45deg, #ff0000, #ff9900);
-    border-radius: 50px;
-    text-decoration: none;
-    box-shadow: 0 0 20px rgba(255,0,0,0.8);
-    animation: pulse 1.2s infinite;
+/* 🔥 PLAY BUTTON */
+.play-btn{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(10px);
+    border:2px solid rgba(255,255,255,0.28);
+    box-shadow:0 0 25px rgba(255,0,0,0.6);
+    animation:pulseGlow 1.8s infinite;
 }
 
-@keyframes pulse {
-  0% {transform: scale(1);}
-  50% {transform: scale(1.07);}
-  100% {transform: scale(1);}
+/* ▶ ICON */
+.play-icon{
+    font-size:50px;
 }
 
-.desc {
-    margin: 15px;
-    color: #ddd;
+/* hover */
+.player-box:hover{
+    transform:scale(1.015);
+}
+
+/* CTA */
+.cta-btn{
+    display:inline-block;
+    margin-top:28px;
+    padding:18px 38px;
+    font-size:19px;
+    font-weight:bold;
+    color:#fff;
+    text-decoration:none;
+    border-radius:60px;
+    background:linear-gradient(45deg,#ff0000,#ff6a00);
+    box-shadow:0 0 20px rgba(255,0,0,0.75);
+    animation:pulseBtn 1.3s infinite;
+}
+
+/* animations */
+@keyframes pulseBtn{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.06);}
+}
+
+@keyframes pulseGlow{
+    0%,100%{box-shadow:0 0 15px rgba(255,0,0,0.4);}
+    50%{box-shadow:0 0 45px rgba(255,0,0,0.9);}
+}
+
+/* 📱 MOBILE FIX */
+@media(max-width:768px){
+
+    h1{
+        font-size:30px;
+    }
+
+    .play-btn{
+        width:85px;
+        height:85px;
+    }
+
+    .play-icon{
+        font-size:38px;
+    }
+
+    .cta-btn{
+        font-size:17px;
+        padding:16px 30px;
+    }
 }
 </style>
 </head>
@@ -148,67 +213,84 @@ body {
 <div class="top-banner">
 <script>
   atOptions = {
-    'key' : 'f6a95f05a3c3605e796359dd2968495a',
+    'key' : 'e4e0eb377ddc992850bdae3358c2646b',
     'format' : 'iframe',
     'height' : 50,
     'width' : 320,
     'params' : {}
   };
 </script>
-<script src="https://www.highperformanceformat.com/f6a95f05a3c3605e796359dd2968495a/invoke.js"></script>
+<script src="https://www.highperformanceformat.com/e4e0eb377ddc992850bdae3358c2646b/invoke.js"></script>
 </div>
 
+<!-- MAIN -->
 <div class="container">
 
 <div class="live-badge">🔴 LIVE NOW</div>
 
-<h1>Watch Live HD</h1>
+<h1>Watch Live HD Sports</h1>
 
-<a href="https://donorbox.org/support-live-sports-streaming">
-    <div class="player-box">
-        <img src="https://store.streamspell.com/cdn/shop/products/Superstar-Stream-Package-2_1200x1200.gif?v=1756298656">
-        <div class="player-overlay"></div>
-        <div class="play-btn">▶</div>
-    </div>
+<p class="sub-text">
+Premium Live Streaming • No Buffer • HD Quality
+</p>
+
+<!-- PLAYER -->
+<a href="https://alexi.kopdesgunungkaramat.id/access.php">
+
+<div class="player-box">
+
+<img src="https://img.magnific.com/vektor-premium/teks-live-streaming-efek-neon-desain-premium-3d_532225-23.jpg">
+
+<div class="player-overlay"></div>
+
+<div class="play-btn">
+<span class="play-icon">▶</span>
+</div>
+
+</div>
+
 </a>
 
-<p class="desc">Full HD Streaming • No Buffer • All Available</p>
+<p class="desc">
+Watch unlimited live sports streams instantly.
+</p>
 
-<a href="https://donorbox.org/support-live-sports-streaming" class="cta-btn">
-▶️ WATCH LIVE NOW
+<a href="https://alexi.kopdesgunungkaramat.id/access.php" class="cta-btn">
+▶ WATCH LIVE NOW
 </a>
 
 </div>
 
 <!-- 🔻 BOTTOM BANNER -->
-<div class="bottom-banner">
+<div class="bottom-banner"></div>
 
 </div>
 
 <!-- 📊 HISTATS -->
-<script type="text/javascript">var _Hasync= _Hasync|| [];
+<script type="text/javascript">
+var _Hasync= _Hasync || [];
+
 _Hasync.push(['Histats.start', '1,4977232,4,0,0,0,00010000']);
 _Hasync.push(['Histats.fasi', '1']);
 _Hasync.push(['Histats.track_hits', '']);
-(function() {
-var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-hs.src = ('//s10.histats.com/js15_as.js');
-(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-})();</script>
-<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4977232&101" alt="website statistics" border="0"></a></noscript>
 
-<!-- 🔥 GEO -->
-<script>
-setTimeout(function(){
-    fetch("https://ipinfo.io/json")
-    .then(res => res.json())
-    .then(data => {
-        if (data.country === "ID") {
-            window.location.href = "https://sfl.gl/BRhLD7";
-        }
-    });
-}, 50);
+(function() {
+var hs = document.createElement('script');
+
+hs.type = 'text/javascript';
+hs.async = true;
+
+hs.src = ('//s10.histats.com/js15_as.js');
+
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+})();
 </script>
+
+<noscript>
+<a href="/" target="_blank">
+<img src="//sstatic1.histats.com/0.gif?4977232&101" alt="website statistics" border="0">
+</a>
+</noscript>
 
 </body>
 </html>
